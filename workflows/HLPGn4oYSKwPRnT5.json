@@ -1,0 +1,113 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-09T03:10:50.752Z",
+  "id": "HLPGn4oYSKwPRnT5",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Local File Mod",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "845927ae-d819-49fc-8170-4256bf30aab4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1D3WRVtqZZKqzSVbNNzeaeDfP04Vo6aOY",
+          "mode": "list",
+          "cachedResultName": "britains.csv",
+          "cachedResultUrl": "https://drive.google.com/file/d/1D3WRVtqZZKqzSVbNNzeaeDfP04Vo6aOY/view?usp=drivesdk"
+        },
+        "options": {
+          "binaryPropertyName": "data"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d72f8da1-a93c-475c-bd1e-54210ffdeab7",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kJPubMp78TYhO4jM",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "C:\\Users\\ebill\\.n8n-files\\britains.csv",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "bc1048e5-ca05-4540-92f0-ac22803495ce",
+      "name": "Read/Write Files from Disk"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-09T03:10:50.756Z",
+      "createdAt": "2026-03-09T03:10:50.756Z",
+      "role": "workflow:owner",
+      "workflowId": "HLPGn4oYSKwPRnT5",
+      "projectId": "v51lXkdty3KTMU9i"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-09T03:35:00.535Z",
+  "versionId": "c0b86013-c466-4448-82ef-95b92d24f762"
+}
