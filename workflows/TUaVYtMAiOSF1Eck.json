@@ -1,0 +1,183 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Download the britains.csv file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download the britains.csv file": {
+      "main": [
+        [
+          {
+            "node": "Read the csv file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read the csv file": {
+      "main": [
+        [
+          {
+            "node": "Call 'Currency Converter and Filter'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'Currency Converter and Filter'": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-05T05:21:57.426Z",
+  "id": "TUaVYtMAiOSF1Eck",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Test Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -32
+      ],
+      "id": "d14cb005-5231-453f-b050-2af730cee634",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1D3WRVtqZZKqzSVbNNzeaeDfP04Vo6aOY",
+          "mode": "list",
+          "cachedResultName": "britains.csv",
+          "cachedResultUrl": "https://drive.google.com/file/d/1D3WRVtqZZKqzSVbNNzeaeDfP04Vo6aOY/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -96,
+        -32
+      ],
+      "id": "3e1dce61-08c0-4365-9b90-308a89556db0",
+      "name": "Download the britains.csv file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kJPubMp78TYhO4jM",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        112,
+        -32
+      ],
+      "id": "ec3a3d5b-e82f-44fd-ac11-e85757d5d480",
+      "name": "Read the csv file"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "wPlRjcuZAADQQfFB",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/wPlRjcuZAADQQfFB",
+          "cachedResultName": "SubWorkflow - Currency Converter and Filter"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        -32
+      ],
+      "id": "2547a669-a0fd-4ae1-b06d-a8051c98b253",
+      "name": "Call 'Currency Converter and Filter'"
+    },
+    {
+      "parameters": {
+        "sendTo": "ebillov@gmail.com",
+        "subject": "Test N8N Data Conversion",
+        "message": "=Workflow was executed successfully.\nDetails of the workflow execution:\n\n{{ $workflow.name }}\n{{ $today }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -32
+      ],
+      "id": "587dcb26-8bb4-40d5-bd27-d63e1203aec2",
+      "name": "Send a message",
+      "webhookId": "5cb4d819-1d2a-4214-8272-e22ad5f9fcde",
+      "executeOnce": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SfIyP3e07vmewiky",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-05T05:21:57.430Z",
+      "createdAt": "2026-03-05T05:21:57.430Z",
+      "role": "workflow:owner",
+      "workflowId": "TUaVYtMAiOSF1Eck",
+      "projectId": "v51lXkdty3KTMU9i"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-06T05:54:05.553Z",
+  "versionId": "ee376de4-a6bb-4d77-85e5-7d8b2fbdb512"
+}
