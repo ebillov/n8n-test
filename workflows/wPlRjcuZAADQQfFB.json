@@ -1,0 +1,184 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Convert Price from AUD to USD": {
+      "main": [
+        [
+          {
+            "node": "Filter empty title and prices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter empty title and prices": {
+      "main": [
+        [
+          {
+            "node": "Filter fields Currency conversions with Title",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter fields Currency conversions with Title": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Convert Price from AUD to USD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-06T05:41:12.919Z",
+  "id": "wPlRjcuZAADQQfFB",
+  "isArchived": false,
+  "meta": null,
+  "name": "SubWorkflow - Currency Converter and Filter",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.audPrice = parseInt(item.json['Variant Price']);\n  item.json.usdPrice = 0.7 * (item.json['Variant Price']);\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        48
+      ],
+      "id": "fa0d7132-1965-42a4-92ac-c0f7e2dfc08b",
+      "name": "Convert Price from AUD to USD"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bf44ad58-6386-436f-a4af-711550a9d33b",
+              "name": "Image Alt Text",
+              "value": "={{ $json['Image Alt Text'] }}",
+              "type": "string"
+            },
+            {
+              "id": "5f16fd37-1b76-44cb-be11-cd6a6ffdc282",
+              "name": "audPrice",
+              "value": "={{ $json.audPrice }}",
+              "type": "number"
+            },
+            {
+              "id": "6d9d8a51-6eaf-433a-b649-fa291849880b",
+              "name": "usdPrice",
+              "value": "={{ $json.usdPrice }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        688,
+        48
+      ],
+      "id": "20782f94-a9d9-4581-8547-8e0b94d5acda",
+      "name": "Filter fields Currency conversions with Title"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "57d19001-dc79-4c29-a23f-c507705fe89d",
+              "leftValue": "={{ $json.audPrice }}",
+              "rightValue": "null",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        496,
+        48
+      ],
+      "id": "9ad6cc19-2735-49d3-8ed2-4e7530ba61ce",
+      "name": "Filter empty title and prices"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        896,
+        48
+      ],
+      "id": "207a9588-034d-460c-8950-34d6ec1961bf",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        48
+      ],
+      "id": "91645f52-fad6-43a0-bf98-265b5b2df94b",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-06T05:41:12.922Z",
+      "createdAt": "2026-03-06T05:41:12.922Z",
+      "role": "workflow:owner",
+      "workflowId": "wPlRjcuZAADQQfFB",
+      "projectId": "v51lXkdty3KTMU9i"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-06T05:52:23.110Z",
+  "versionId": "c8230500-38e4-4998-9924-a84516c6a0c2"
+}
